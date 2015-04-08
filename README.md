@@ -44,6 +44,7 @@ Though it's best if you keep it simple and consistent, naturally.
 Another, slightly more convoluted example
 
 =================================================================================================================
+```
 <powershell>
  Read-S3Object -bucketname domain-common -key /windows/ra2/DrillSergeant.ps1 -file c:\dom\DrillSergeant.ps1
  # or perhaps
@@ -59,6 +60,7 @@ Another, slightly more convoluted example
     4 { Execute-Step -script "& finalise.exe" }
  }
 </powershell>
+```
 =================================================================================================================
 
 As you'd expect, this executes step 1, reboots, executes step 3, then executes step 2, reboots, then finally executes step 4.
