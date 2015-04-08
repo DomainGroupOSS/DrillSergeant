@@ -16,7 +16,8 @@ He takes raw EC2 recruits and beats them into shape. And probably calls them 'ma
 An example, which is fed into the New-EC2Instance cmdlet's -UserData parameter (as Base-64), or pasted into UserData when creating instances at the console:
 
 =================================================================================================================
-`<powershell>
+```
+<powershell>
  Read-S3Object -bucketname domain-files -key /windows/ra2/DrillSergeant.ps1 -file c:\dom\DrillSergeant.ps1
  # or perhaps
  # Invoke-WebRequest http://devops.fixt.co/resources/DrillSergeant.ps1 -outFile c:\dom\DrillSergeant.ps1
@@ -29,7 +30,8 @@ An example, which is fed into the New-EC2Instance cmdlet's -UserData parameter (
     2 { Execute-Step -script "New-Item -path c:\step2 -itemtype directory" -followedby 3 -reboot }
     3 { Execute-Step -script post.ps1  }
  }
-</powershell>`
+</powershell>
+```
 ==================================================================================================================
  
 As you can see, we first execute c:\dom\ol\base.ps1, declaring the next step to be '2', and reboot.
