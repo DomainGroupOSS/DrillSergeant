@@ -3,17 +3,21 @@ A simple AWS EC2 UserData manager for Windows instances
 
 ### What is DrillSergeant? ###
 
-DrillSergeant is a supporting script module for streamlined, multi-boot user data on Windows in AWS
+Sometimes, in Windows World, you need to reboot before you can carry on provisioning a server.
 
-DrillSergeant is part of the extended platoons in Domain's [Robot Army v2](http://tech.domain.com.au/2015/01/robot-army-v2-0/)
+It's a fact of life.
 
-He takes raw EC2 recruits and beats them into shape. And probably calls them 'you maggots' while he's doing it
+DrillSergeant helps you do that, in AWS EC2, without user input.
 
-an example, which is fed into the New-EC2Instance cmdlet's -UserData parameter (as Base-64):
+DrillSergeant is part of the extended platoons in Domain's [Robot Army v2.x](http://tech.domain.com.au/2015/01/robot-army-v2-0/)
+
+He takes raw EC2 recruits and beats them into shape. And probably calls them 'maggots' while he's doing it. BEcause that's what Drill Sergeants do, right?
+
+An example, which is fed into the New-EC2Instance cmdlet's -UserData parameter (as Base-64), or pasted into UserData when creating instances at the console:
 
 =================================================================================================================
 <powershell>
- Read-S3Object -bucketname domain-common -key /windows/ra2/DrillSergeant.ps1 -file c:\dom\DrillSergeant.ps1
+ Read-S3Object -bucketname domain-files -key /windows/ra2/DrillSergeant.ps1 -file c:\dom\DrillSergeant.ps1
  # or perhaps
  # Invoke-WebRequest http://devops.fixt.co/resources/DrillSergeant.ps1 -outFile c:\dom\DrillSergeant.ps1
  
@@ -58,3 +62,31 @@ Another, slightly more convoluted example
 As you'd expect, this executes step 1, reboots, executes step 3, then executes step 2, reboots, then finally executes step 4.
 
 I don't know why you'd want to do it like this, but *you can if you like*.
+
+There are some examples in, naturally, the /examples/ folder
+
+Feel free to add one or two more
+
+### Licence ###
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Domain Group (http://www.domain.com.au/group)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
