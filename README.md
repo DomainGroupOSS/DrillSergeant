@@ -11,7 +11,7 @@ DrillSergeant helps you do that, in AWS EC2, without user input.
 
 DrillSergeant is part of the extended platoons in Domain's [Robot Army v2.x](http://tech.domain.com.au/2015/01/robot-army-v2-0/)
 
-He takes raw EC2 recruits and beats them into shape. And probably calls them 'maggots' while he's doing it. BEcause that's what Drill Sergeants do, right?
+He takes raw EC2 recruits and beats them into shape. And probably calls them 'maggots' while he's doing it. Because that's what Drill Sergeants do, right?
 
 An example, which is fed into the New-EC2Instance cmdlet's -UserData parameter (as Base-64), or pasted into UserData when creating instances at the console:
 
