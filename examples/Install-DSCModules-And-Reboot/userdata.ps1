@@ -1,3 +1,5 @@
+<powershell>
+
 Start-Transcript c:\ds\log.txt -Append # logging. Because this is very. very useful
 
 Set-ExecutionPolicy -executionpolicy unrestricted -Force -verbose
@@ -16,3 +18,5 @@ switch(Get-CurrentStep)
 }
 
 Stop-Transcript
+
+</powershell>
