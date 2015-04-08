@@ -46,15 +46,15 @@ Another, slightly more convoluted example
 =================================================================================================================
 ```
 <powershell>
- Read-S3Object -bucketname domain-common -key /windows/ra2/DrillSergeant.ps1 -file c:\dom\DrillSergeant.ps1
+ Read-S3Object -bucketname domain-files -key /DrillSergeant.ps1 -file c:\ds\DrillSergeant.ps1
  # or perhaps
- # iwr http://devops.fixt.co/resources/DrillSergeant.ps1 -outFile c:\dom\DrillSergeant.ps1
+ # iwr http://devops.fixt.co/resources/DrillSergeant.ps1 -outFile c:\ds\DrillSergeant.ps1
  
  ipmo c:\dom\DrillSergeant.ps1
 
  Switch(Get-CurrentStep)
  {
-    1 { Execute-Step -script "& c:\dom\ol\base.ps1" -followedby 3 -reboot  }
+    1 { Execute-Step -script "& c:\ds\ol\base.ps1" -followedby 3 -reboot  }
     2 { Execute-Step -script "New-Item -path c:\step2 -itemtype directory" -followedby 4 -reboot }
     3 { Execute-Step -script post.ps1 -followedby 2  }
     4 { Execute-Step -script "& finalise.exe" }
