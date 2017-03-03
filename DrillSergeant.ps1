@@ -1,5 +1,5 @@
 <#
- DrillSergeant is a supporting script module for streamlined, multi-boot user data on Windows in AWS
+ DrillSergeant is a supporting script module for streamlined, multi-boot user data on Windows Server in AWS
 
  He takes raw recruits and beats them into shape. And probably calls them maggots while he's doing it
 
@@ -20,6 +20,7 @@
     3 { Execute-Step -script post.ps1  }
  }
  </powershell>
+ <persist>true</persist>
  ==================================================================================================================
  
  As you can see, we first execute ol\base.ps1, then we declare the next step to be '2' and reboot.
@@ -45,6 +46,7 @@
     4 { Execute-Step -script "& finalise.exe" }
  }
  </powershell>
+ <persist>true</persist>
  =================================================================================================================
 
 
@@ -235,9 +237,19 @@ Function Set-UserDataConfig
     (
         $state = "Enabled"
     )
-    $targetPath = "$ec2configfolder\Settings\config.xml"
-    $config = [xml](gc $targetPath -raw)
-    $userdatanode = $config.Ec2ConfigurationSettings.Plugins.Plugin | ? { $_.Name -eq "EC2HandleUserData"}
-    $userdatanode.State = $state
-    $config.Save($targetPath)
+    # are we on 2012 or 2016? 
+    $ver = [Environment]::OSVersion.Version.Major # this is enough
+    if($ver -eq 10)
+    {
+        # it should be enough to make sure <persist>true</persist> is in the userdata
+    }
+    else
+    {
+        # server 2012
+        $targetPath = "$ec2configfolder\Settings\config.xml"
+        $config = [xml](gc $targetPath -raw)
+        $userdatanode = $config.Ec2ConfigurationSettings.Plugins.Plugin | ? { $_.Name -eq "EC2HandleUserData"}
+        $userdatanode.State = $state
+        $config.Save($targetPath)
+    }
 }
